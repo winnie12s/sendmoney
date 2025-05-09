@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bank Accounts</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .account-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-align: center;
+        }
+        .account-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .account-name {
+            color: #777;
+            font-size: 0.9em;
+        }
+        .copied-message {
+            color: green;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Bank Accounts</h1>
+
+    <div class="account-box" onclick="copyToClipboard('GE12TB3456789012345678', this)">
+        <div class="account-name">Account 1 (Savings)</div>
+        <div class="account-number">GE12TB3456789012345678</div>
+        <div class="copied-message" style="display:none;">Copied!</div>
+    </div>
+
+    <div class="account-box" onclick="copyToClipboard('GE98BC0123456789012345', this)">
+        <div class="account-name">Account 2 (Current)</div>
+        <div class="account-number">GE98BC0123456789012345</div>
+        <div class="copied-message" style="display:none;">Copied!</div>
+    </div>
+
+    <div class="account-box" onclick="copyToClipboard('GE56LB0987654321098765', this)">
+        <div class="account-name">Account 3 (USD)</div>
+        <div class="account-number">GE56LB0987654321098765</div>
+        <div class="copied-message" style="display:none;">Copied!</div>
+    </div>
+
+    <script>
+        function copyToClipboard(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show the copied message
+                let copiedMessage = element.querySelector('.copied-message');
+                copiedMessage.style.display = 'block';
+
+                // Hide the message after a short delay (e.g., 1.5 seconds)
+                setTimeout(() => {
+                    copiedMessage.style.display = 'none';
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy text. Please try again.');
+            });
+        }
+    </script>
+
+</body>
+</html>
